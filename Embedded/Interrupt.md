@@ -1,3 +1,14 @@
+# Interrupt
+An interrupt is a mechanism that allows a peripheral or software to notify the CPU when an event happens. The CPU does not need to continuously poll the peripheral. Instead, it executes an ISR when the interrupt occurs.
+
+Because multiple interrupts can happen at the same time, the MCU uses interrupt priority to decide which one should be handled first.
+
+On Cortex-M, the NVIC manages interrupt priority and supports interrupt nesting. A higher-priority interrupt can preempt a lower-priority interrupt.
+
+For example, a motor control timer interrupt may have higher priority than a UART interrupt because it requires more deterministic timing.
+
+On Cortex-M, remember that a smaller priority number means a higher priority.
+
 # Polling and Interrupt
 Polling and interrupt are two ways for the CPU to handle peripheral events.
 
