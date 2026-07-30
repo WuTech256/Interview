@@ -1,7 +1,7 @@
-SysTick is a 24-bit down-counting timer built into the Cortex-M core. 
-It counts down from the value in the LOAD register to zero, sets the count flag, then reloads automatically.
+SysTick is a 24-bit down-counting timer built into the Cortex-M core. It counts down from the value in the LOAD register to zero, sets the COUNTFLAG, and then automatically reloads the value from LOAD.
 
-It has 3 main registers: LOAD for the reload value, VAL for the current value, and CTRL to enable the timer, enable interrupts, 
-and choose the clock source. To create a delay, compute the reload value from the desired delay times the system clock.
-For example, 16,000 ticks for 1 millisecond at 16 megahertz. You can either poll the count flag in a loop for a simple blocking delay, 
-or enable the SysTick interrupt to generate a periodic tick, like 1 millisecond, which an RTOS uses as the heartbeat for its scheduler
+It has three main registers: LOAD for the reload value, VAL for the current counter value, and CTRL to enable the timer, enable interrupts, and select the clock source.
+
+The reload value is calculated based on the desired tick period and the system clock frequency. For example, to generate a 1 millisecond tick with a 16 MHz clock, the reload value is 16,000 - 1.
+
+SysTick can be used in two common ways. For simple timing or blocking delays, software can poll the COUNTFLAG until the counter reaches zero. Alternatively, SysTick can generate periodic interrupts by enabling the SysTick interrupt. This periodic interrupt is commonly used as the system time base for an RTOS scheduler, for example generating a 1 millisecond tick to manage task delays and scheduling.
