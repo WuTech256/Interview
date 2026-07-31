@@ -62,7 +62,24 @@ The combination of CPOL and CPHA gives:
 | Mode 3 | 1 | 1 |
 
 The master and slave must use the same SPI mode, otherwise data will be corrupted.
-
+---
+Enable SPI peripheral clock
+        ↓
+Configure GPIO pins
+- SCLK
+- MOSI
+- MISO
+- CS (GPIO or Hardware NSS)
+        ↓
+Configure SPI parameters
+- Master or Slave
+- Clock Polarity (CPOL)
+- Clock Phase (CPHA)
+- Baud Rate Prescaler
+- Data Size (8/16 bit)
+- MSB First or LSB First
+        ↓
+Enable SPI
 ---
 
 ### SPI vs UART
